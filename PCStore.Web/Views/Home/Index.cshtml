@@ -1,0 +1,45 @@
+﻿@model PCStore.Web.Areas.Admin.Models.Products.ProductListingViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide center-block" data-ride="carousel" data-interval="6000">    
+    <div class="carousel-inner center-block" role="listbox">
+        <div class="item active text-center">
+            <img src="~/images/banner1.jpg" alt="ASP.NET" class="img-responsive center-block" />
+            <div class="carousel-caption" role="option">
+            </div>
+        </div>        
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>What we offer</h2>
+        <ul>
+            <li>Qaulity merchandise</li>
+            <li>Great prices</li>
+            <li>Fast shipping</li>
+            <li>Awesome techsupport</li>
+        </ul>
+    </div>
+    <br />
+    @foreach (var p in Model.Products)
+    {
+        <form method="post">
+            <div class="col-md-3 center-block text-center">
+                <div class="card center-block" style="width:150px;">
+                    <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(p.Photo)" height="150" style="width:100%">
+                    <div class="card-body">
+                        <h5 @*class="card-title" *@><strong>@p.Type @p.Make @p.Model</strong></h5>
+                        <div class="row">                            
+                            <div class="col-md-12">
+                                <input class="btn btn-sm btn-info btn-block" asp-controller="Store" asp-action="Details" asp-route-id="@p.Id" id="btn" type="submit" value="Details" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</div>

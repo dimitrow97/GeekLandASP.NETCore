@@ -1,0 +1,68 @@
+﻿@model PCStore.Web.Areas.Admin.Models.Products.ProductListingViewModel
+@{
+    ViewData["Title"] = "Geek's Heaven";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br>
+
+<br>
+
+
+<div class="row">
+    <div class="col-md-2">
+        <nav class="nav-sidebar">
+            <ul class="nav">
+                <li><a asp-action="AllProducts">All</a></li>
+                <li><a asp-action="CPU">CPU</a></li>
+                <li><a asp-action="GPU">GPU</a></li>
+                <li><a asp-action="PSU">PSU</a></li>
+                <li><a asp-action="RAM">RAM</a></li>
+                <li><a asp-action="PCCase">PC Case</a></li>
+                <li class="active"><a asp-action="Motherboard">Motherboard</a></li>
+                <li><a asp-action="StorageDevice">Storage Device</a></li>
+            </ul>
+        </nav>
+
+    </div>
+    <div class="col-md-10">
+        <form method="post">
+            <div class="container">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-4 center-block text-center">
+                        <div class="card center-block" style="width:300px;">
+                            <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(product.Photo)" height="300" style="width:100%">
+                            <div class="card-body">
+                                <h5 class="card-title" style="height:30%"><strong>@product.Type @product.Make @product.Model</strong></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="btn btn-sm btn-info btn-block" asp-action="Details" asp-route-id="@product.Id" id="btn" type="submit" value="Details" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<link href="~/css/site.css" rel="stylesheet" type="text/css" media="screen" runat="server" />
+<link href="~/css/site.min.css" rel="stylesheet" type="text/css" media="screen" runat="server" />
+
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+</script>

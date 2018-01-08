@@ -1,0 +1,49 @@
+﻿@model UserListingsViewModel
+@{
+    ViewData["Title"] = "User Administration";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <th>
+                    @user.Username
+                </th>
+                <th>
+                    @user.Email
+                </th>
+                <th>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="hidden" name="UserId" value="@user.Id" />
+                                <select name="Role" asp-items="Model.Roles" class="form-control"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <input class="btn btn-sm btn-primary" asp-action="AddToRole" id="btn" type="submit" value="Add To Role" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="UserId" value="@user.Id" />
+                                <input class="btn btn-sm btn-primary" asp-action="DeleteUser" id="btn" type="submit" value="DELETE" />
+                            </div>
+                        </div>
+                    </form>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

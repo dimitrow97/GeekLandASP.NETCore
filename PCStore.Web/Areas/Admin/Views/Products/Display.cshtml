@@ -1,0 +1,37 @@
+﻿@model PCStore.Web.Areas.Admin.Models.Products.ProductListingViewModel
+@{
+    ViewData["Title"] = "Merchandise Administration";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br>
+<div class="container">
+    <div class="row">
+        <form method="post">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 center-block text-center">
+                    <div class="card center-block" style="width:300px;">
+                        <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(product.Photo)" height="300" style="width:100%">
+                        <div class="card-body" style="height:30%">
+                            <h5 @*class="card-title" *@><strong>@product.Type @product.Make @product.Model</strong></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="btn btn-sm btn-warning btn-block" asp-action="EditForm" asp-route-id="@product.Id" id="btn" type="submit" value="Edit" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="btn btn-sm btn-danger btn-block" asp-action="Delete" asp-route-id="@product.Id"id="btn" type="submit" value="Delete" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>

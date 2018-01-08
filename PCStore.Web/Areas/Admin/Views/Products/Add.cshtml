@@ -1,0 +1,67 @@
+﻿@model PCStore.Web.Areas.Admin.Models.Products.AddProductViewModel
+
+@{
+    ViewData["Title"] = "Add new PC Part to the Store";
+}
+
+<h2>PC Store</h2>
+
+<h4>Add new PC Part to the Store</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select class="form-control" id="Type" name="Type" asp-for="Type">
+                    <option value="">- Please select a type -</option>
+                    <option value="CPU">CPU</option>
+                    <option value="GPU">GPU</option>
+                    <option value="PSU">PSU</option>
+                    <option value="RAM">RAM</option>
+                    <option value="PCCase">PCCase</option>
+                    <option value="DiskDrive">DiskDrive</option>
+                    <option value="Motherboard">Motherboard</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Make" class="control-label"></label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specs" class="control-label"></label>
+                <textarea asp-for="Specs" rows="10" class="form-control"></textarea>
+                <span asp-validation-for="Specs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo"></label>
+                <input type="file" id="files" asp-for="Photo" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
